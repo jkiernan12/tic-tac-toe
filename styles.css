@@ -1,0 +1,32 @@
+body {
+    background-color: black;
+    color: orange;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.player-1, .player-2, .game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid red;
+}
+
+.player-1__name, .player-2__name {
+    font-size: 10rem;
+}
+
+.board {
+    border: 10px solid black;
+    width: 95%;
+    height: 100%;
+    margin: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.board__square {
+    border: 2px solid pink;
+    width: 100%;
+}
