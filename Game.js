@@ -6,6 +6,7 @@ class Game {
         this.player1Moves = [];
         this.player2Moves = [];
         this.currentTurn = "player1";
+        this.winner = ""
     }
 
     checkMove(move) {
@@ -20,6 +21,7 @@ class Game {
     addMove(move) {
         this.board.push(move);
         this[`${this.currentTurn}Moves`].push(move);
+        this.checkGame();
         this.toggleTurn();
         }
 
@@ -32,7 +34,6 @@ class Game {
     }
 
     checkGame() {
-        // if x
         var xBoardMap = {1: [], 2: [], 3: []}
         var yBoardMap = {1: [], 2: [], 3: []}
         var middle = false;
@@ -40,6 +41,20 @@ class Game {
             var currentMove = this[`${this.currentTurn}Moves`][i];
             xBoardMap[currentMove[0]].push(currentMove);
             yBoardMap[currentMove[1]].push(currentMove);
+            if (xBoardMap[currentMove[0]].length >= 3 ||
+                yBoardMap[currentMove[1]].length >= 3) {
+                this.winGame();
+            }
         }
+    }
+
+    winGame() {
+        this.winner = this.currentTurn;
+        this.board = [];
+        this.player1Moves = []
+        this.player2Moves = [];
+        this[this.currentTurn].addWin();
+        this[this.currentTurn].saveWinsToStorage();
+
     }
 }
