@@ -34,9 +34,14 @@ class Game {
     }
 
     checkGame() {
+        this.checkDiagonal([[1, 1], [2, 2], [3, 3]]);
+        this.checkDiagonal([[3, 1], [2, 2], [1, 3]]);
+        this.checkStraights();
+    }
+
+    checkStraights() {
         var xBoardMap = {1: [], 2: [], 3: []}
         var yBoardMap = {1: [], 2: [], 3: []}
-        var middle = false;
         for (var i = 0; i < this[`${this.currentTurn}Moves`].length; i++) {
             var currentMove = this[`${this.currentTurn}Moves`][i];
             xBoardMap[currentMove[0]].push(currentMove);
@@ -46,6 +51,23 @@ class Game {
                 this.winGame();
             }
         }
+    }                   
+
+    checkDiagonal(moves) {
+        var movesCounter = 0;
+        for (var n = 0; n < moves.length; n++) {
+            var currentMove = this[`${this.currentTurn}Moves`];
+            for (var i = 0; i < this[`${this.currentTurn}Moves`].length; i++) {
+                console.log("current move", currentMove[i])
+                console.log("n", n)
+                if (currentMove[i][0] === moves[n][0] && currentMove[i][1] === moves[n][1]) {
+                    movesCounter++;
+                }
+            }
+        }
+        if (movesCounter === 3) {
+            this.winGame();
+        }
     }
 
     winGame() {
@@ -54,7 +76,8 @@ class Game {
         this.player1Moves = []
         this.player2Moves = [];
         this[this.currentTurn].addWin();
+        console.log(this.winner)
         this[this.currentTurn].saveWinsToStorage();
-
+        return;
     }
 }
