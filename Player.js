@@ -14,7 +14,7 @@ class Player {
         this.wins = parseInt(retrieved);
     }
 
-    addwin() {
+    addWin() {
         this.wins++;
     }
 }
