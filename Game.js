@@ -58,8 +58,6 @@ class Game {
         for (var n = 0; n < moves.length; n++) {
             var currentMove = this[`${this.currentTurn}Moves`];
             for (var i = 0; i < this[`${this.currentTurn}Moves`].length; i++) {
-                console.log("current move", currentMove[i])
-                console.log("n", n)
                 if (currentMove[i][0] === moves[n][0] && currentMove[i][1] === moves[n][1]) {
                     movesCounter++;
                 }
