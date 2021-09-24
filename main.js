@@ -11,11 +11,44 @@ board.addEventListener("click", makeMove)
 // Globals
 var game = new Game();
 
+// Functions
+
 function makeMove(event) {
     var moveCoordinates = [];
     moveCoordinates.push(parseInt(event.target.dataset.x));
     moveCoordinates.push(parseInt(event.target.dataset.y));
+    // event.target.innerText = game[game.currentTurn].token;
     game.checkMove(moveCoordinates);
-    console.log(game.board);
+    renderGame();
 }
 
+function renderGame() {
+    renderWins();
+    renderBoard("player1");
+    renderBoard("player2");
+    if (game.board.length === 0) {
+        setTimeout(clearBoard, 2000)
+    }
+}
+
+function renderWins() {
+    game.player1.retrieveWinsFromStorage();
+    game.player2.retrieveWinsFromStorage();
+    playerOneWins.innerText = `${game.player1.wins} wins`;
+    playerTwoWins.innerText = `${game.player2.wins} wins`;
+}
+
+function renderBoard(player) {
+    for (var i = 0; i < game[`${player}Moves`].length; i++) {
+        var currentBox = document.querySelector(`[data-x="${game[`${player}Moves`][i][0]}"][data-y="${game[`${player}Moves`][i][1]}"]`);
+        currentBox.innerText = "";
+        currentBox.innerText = game[`${player}`].token;
+    }
+}
+
+function clearBoard() {
+    var squares = document.querySelectorAll(".board__square");
+    for (var i = 0; i < squares.length; i++) {
+        squares[i].innerText = "";
+    }
+}
