@@ -17,8 +17,13 @@ function makeMove(event) {
     var moveCoordinates = [];
     moveCoordinates.push(parseInt(event.target.dataset.x));
     moveCoordinates.push(parseInt(event.target.dataset.y));
-    // event.target.innerText = game[game.currentTurn].token;
-    game.checkMove(moveCoordinates);
+
+    if (game.checkMove(moveCoordinates)) {
+        game.addMove(moveCoordinates);
+        renderGame();
+        game.checkGame();
+        game.toggleTurn();
+    }
     renderGame();
 }
 
@@ -26,7 +31,7 @@ function renderGame() {
     renderWins();
     renderBoard("player1");
     renderBoard("player2");
-    if (game.board.length === 0) {
+    if (game.board.length === 0 && game.winner) {
         setTimeout(clearBoard, 2000)
     }
 }

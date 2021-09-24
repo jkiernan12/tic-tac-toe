@@ -15,14 +15,12 @@ class Game {
                 return false;
             }
         } 
-            this.addMove(move)
+            return true;
     }
 
     addMove(move) {
         this.board.push(move);
         this[`${this.currentTurn}Moves`].push(move);
-        this.checkGame();
-        this.toggleTurn();
         }
 
     toggleTurn() {
@@ -37,6 +35,7 @@ class Game {
         this.checkDiagonal([[1, 1], [2, 2], [3, 3]]);
         this.checkDiagonal([[3, 1], [2, 2], [1, 3]]);
         this.checkStraights();
+        this.checkDraw();
     }
 
     checkStraights() {
@@ -70,12 +69,21 @@ class Game {
 
     winGame() {
         this.winner = this.currentTurn;
+        this.clearMoves();
+        this[this.currentTurn].addWin();
+        this[this.currentTurn].saveWinsToStorage();
+    }
+
+    checkDraw() {
+        if (this.board.length === 9) {
+            this.clearMoves();
+            this.winner = "draw";
+        }
+    }
+
+    clearMoves() {
         this.board = [];
         this.player1Moves = []
         this.player2Moves = [];
-        this[this.currentTurn].addWin();
-        console.log(this.winner)
-        this[this.currentTurn].saveWinsToStorage();
-        return;
     }
 }
