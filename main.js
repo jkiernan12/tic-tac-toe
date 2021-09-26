@@ -31,9 +31,15 @@ function renderGame() {
     renderWins();
     renderBoard("player1");
     renderBoard("player2");
-    // renderFeedback();
+    renderFeedback(`It's ${game[game.currentTurn].token}'s turn!'`);
     if (game.board.length === 0 && game.winner) {
-        setTimeout(clearBoard, 2000)
+        if (game.winner === "draw") {
+            renderFeedback(`It's a draw!`);
+        } else {
+            renderFeedback(`${game[game.winner].token} won!`);
+        }
+           
+        setTimeout(clearBoard, 500)
     }
 }
 
@@ -52,9 +58,16 @@ function renderBoard(player) {
     }
 }
 
+function renderFeedback(message) {
+    if (message) {
+        gameFeedback.innerText = message;
+    }
+}
+
 function clearBoard() {
     var squares = document.querySelectorAll(".board__square");
     for (var i = 0; i < squares.length; i++) {
         squares[i].innerText = "";
     }
+    renderFeedback(`It's ${game[game.currentTurn].token}'s turn!'`)
 }
