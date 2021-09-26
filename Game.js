@@ -3,8 +3,6 @@ class Game {
         this.player1 = new Player("one", "👻");
         this.player2 = new Player("two", "🎃");
         this.board = [];
-        this.player1Moves = [];
-        this.player2Moves = [];
         this.currentTurn = "player1";
         this.winner = ""
     }
@@ -20,7 +18,7 @@ class Game {
 
     addMove(move) {
         this.board.push(move);
-        this[`${this.currentTurn}Moves`].push(move);
+        this[`${this.currentTurn}`].moves.push(move);
         }
 
     toggleTurn() {
@@ -41,8 +39,8 @@ class Game {
     checkStraights() {
         var xBoardMap = {1: [], 2: [], 3: []}
         var yBoardMap = {1: [], 2: [], 3: []}
-        for (var i = 0; i < this[`${this.currentTurn}Moves`].length; i++) {
-            var currentMove = this[`${this.currentTurn}Moves`][i];
+        for (var i = 0; i < this[`${this.currentTurn}`].moves.length; i++) {
+            var currentMove = this[`${this.currentTurn}`].moves[i];
             xBoardMap[currentMove[0]].push(currentMove);
             yBoardMap[currentMove[1]].push(currentMove);
             if (xBoardMap[currentMove[0]].length >= 3 ||
@@ -55,8 +53,8 @@ class Game {
     checkDiagonal(moves) {
         var movesCounter = 0;
         for (var n = 0; n < moves.length; n++) {
-            var currentMove = this[`${this.currentTurn}Moves`];
-            for (var i = 0; i < this[`${this.currentTurn}Moves`].length; i++) {
+            var currentMove = this[`${this.currentTurn}`].moves;
+            for (var i = 0; i < this[`${this.currentTurn}`].moves.length; i++) {
                 if (currentMove[i][0] === moves[n][0] && currentMove[i][1] === moves[n][1]) {
                     movesCounter++;
                 }
@@ -83,7 +81,7 @@ class Game {
 
     clearMoves() {
         this.board = [];
-        this.player1Moves = []
-        this.player2Moves = [];
+        this.player1.moves = []
+        this.player2.moves = [];
     }
 }

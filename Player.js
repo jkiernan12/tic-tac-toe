@@ -3,6 +3,7 @@ class Player {
         this.id = id;
         this.token = token;
         this.wins = wins || 0;
+        this.moves = [];
     }
 
     saveWinsToStorage() {
@@ -10,8 +11,10 @@ class Player {
     }
 
     retrieveWinsFromStorage() {
-        var retrieved = window.localStorage.getItem(`${this.id}`);
-        this.wins = parseInt(retrieved);
+        if (window.localStorage.getItem(`${this.id}`)) {
+            var retrieved = window.localStorage.getItem(`${this.id}`);
+            this.wins = parseInt(retrieved);
+        }
     }
 
     addWin() {

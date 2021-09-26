@@ -31,21 +31,22 @@ function renderGame() {
     renderWins();
     renderBoard("player1");
     renderBoard("player2");
+    // renderFeedback();
     if (game.board.length === 0 && game.winner) {
         setTimeout(clearBoard, 2000)
     }
 }
 
 function renderWins() {
-    game.player1.retrieveWinsFromStorage();
-    game.player2.retrieveWinsFromStorage();
-    playerOneWins.innerText = `${game.player1.wins} wins`;
-    playerTwoWins.innerText = `${game.player2.wins} wins`;
+        game.player1.retrieveWinsFromStorage();
+        game.player2.retrieveWinsFromStorage();
+        playerOneWins.innerText = `${game.player1.wins} wins`;
+        playerTwoWins.innerText = `${game.player2.wins} wins`;
 }
 
 function renderBoard(player) {
-    for (var i = 0; i < game[`${player}Moves`].length; i++) {
-        var currentBox = document.querySelector(`[data-x="${game[`${player}Moves`][i][0]}"][data-y="${game[`${player}Moves`][i][1]}"]`);
+    for (var i = 0; i < game[`${player}`].moves.length; i++) {
+        var currentBox = document.querySelector(`[data-x="${game[`${player}`].moves[i][0]}"][data-y="${game[`${player}`].moves[i][1]}"]`);
         currentBox.innerText = "";
         currentBox.innerText = game[`${player}`].token;
     }
