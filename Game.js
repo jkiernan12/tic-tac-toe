@@ -32,19 +32,17 @@ class Game {
     checkGame() {
         this.checkDiagonal([[1, 1], [2, 2], [3, 3]]);
         this.checkDiagonal([[3, 1], [2, 2], [1, 3]]);
-        this.checkStraights();
+        this.checkStraights(0);
+        this.checkStraights(1)
         this.checkDraw();
     }
 
-    checkStraights() {
-        var xBoardMap = {1: [], 2: [], 3: []}
-        var yBoardMap = {1: [], 2: [], 3: []}
-        for (var i = 0; i < this[`${this.currentTurn}`].moves.length; i++) {
-            var currentMove = this[`${this.currentTurn}`].moves[i];
-            xBoardMap[currentMove[0]].push(currentMove);
-            yBoardMap[currentMove[1]].push(currentMove);
-            if (xBoardMap[currentMove[0]].length >= 3 ||
-                yBoardMap[currentMove[1]].length >= 3) {
+    checkStraights(index) {
+        var boardMap = {1: [], 2: [], 3: []}
+        for (var i = 0; i < this[this.currentTurn].moves.length; i++) {
+            var currentMove = this[this.currentTurn].moves[i];
+            boardMap[currentMove[index]].push(currentMove);
+            if (boardMap[currentMove[index]].length >= 3) {
                 this.winGame();
             }
         }
@@ -53,13 +51,14 @@ class Game {
     checkDiagonal(moves) {
         var movesCounter = 0;
         for (var n = 0; n < moves.length; n++) {
-            var currentMove = this[`${this.currentTurn}`].moves;
-            for (var i = 0; i < this[`${this.currentTurn}`].moves.length; i++) {
+            var currentMove = this[this.currentTurn].moves;
+            for (var i = 0; i < this[this.currentTurn].moves.length; i++) {
                 if (currentMove[i][0] === moves[n][0] && currentMove[i][1] === moves[n][1]) {
                     movesCounter++;
                 }
             }
         }
+
         if (movesCounter === 3) {
             this.winGame();
         }
