@@ -31,7 +31,7 @@ function renderGame() {
     renderWins();
     renderBoard("player1");
     renderBoard("player2");
-    renderFeedback(`It's ${game[game.currentTurn].token}'s turn!'`);
+    renderFeedback(`It's ${game[game.currentTurn].token}'s turn!`);
     renderWinner()
 }
 
@@ -43,7 +43,7 @@ function renderWinner() {
             renderFeedback(`${game[game.winner].token} won!`);
         }
            
-        setTimeout(clearBoard, 500)
+        setTimeout(clearBoard, 1000)
     }
 }
 
@@ -74,5 +74,5 @@ function clearBoard() {
     for (var i = 0; i < squares.length; i++) {
         squares[i].innerText = "";
     }
-    renderFeedback(`It's ${game[game.currentTurn].token}'s turn!'`)
+    renderFeedback(`It's ${game[game.currentTurn].token}'s turn!`)
 }
