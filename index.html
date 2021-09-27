@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,11 +9,11 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <section class="player-1">
+        <aside class="player-1">
             <h2 class="player-1__name" id="playerOneName">👻</h2>
             <h3 class="player-1__wins" id="playerOneWins">0 wins</h3>
-        </section>
-        <section class="game">
+        </aside>
+        <main class="game">
             <h1 class="game__title">Spooky Tic Tac Toe</h1>
             <h2 class="game__feedback" id="gameFeedBack">It's Player 1's Turn</h2>
             <div class="board" id="board">
@@ -27,11 +27,11 @@
                 <div class="board__square" data-x=2 data-y=1></div>
                 <div class="board__square" data-x=3 data-y=1></div>
             </div>
-        </section>
-        <section class="player-2">
+        </main>
+        <aside class="player-2">
             <h2 class="player-2__name" id="playerTwoName">🎃</h2>
             <h3 class="player-2__wins" id="playerTwoWins">0 wins</h3>
-        </section>
+        </aside>
         <script src="Player.js"></script>
         <script src="Game.js"></script>
         <script src="main.js"></script>
