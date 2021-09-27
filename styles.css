@@ -5,6 +5,7 @@ body {
     grid-template-columns: 1fr 2fr 1fr;
     font-family: 'Oswald', sans-serif;
     font-size: 1.75rem;
+    margin: 0;
 }
 
 .player-1, .player-2, .game, .board__square {
@@ -55,4 +56,34 @@ body {
     font-family: 'Creepster', cursive;
     font-size: 4rem;
     text-align: center;
+}
+
+@media screen and (max-width: 760px) {
+    body {
+        grid-template-columns: 1fr 1fr;
+        font-size: 1rem;
+    }
+
+    .board {
+        min-width: 325px;
+    }
+
+    .game {
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+    }
+
+    .game__feedback {
+        font-size:
+    }
+
+    .game__title {
+        font-size: 2.5rem;
+        margin: 10px;
+    }
+
+    .player-1__name, .player-2__name {
+       font-size: 3rem;
+       margin: 0;
+    }
 }
