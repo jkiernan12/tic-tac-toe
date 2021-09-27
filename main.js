@@ -32,6 +32,10 @@ function renderGame() {
     renderBoard("player1");
     renderBoard("player2");
     renderFeedback(`It's ${game[game.currentTurn].token}'s turn!'`);
+    renderWinner()
+}
+
+function renderWinner() {
     if (game.board.length === 0 && game.winner) {
         if (game.winner === "draw") {
             renderFeedback(`It's a draw!`);
@@ -51,10 +55,11 @@ function renderWins() {
 }
 
 function renderBoard(player) {
-    for (var i = 0; i < game[`${player}`].moves.length; i++) {
-        var currentBox = document.querySelector(`[data-x="${game[`${player}`].moves[i][0]}"][data-y="${game[`${player}`].moves[i][1]}"]`);
-        currentBox.innerText = "";
-        currentBox.innerText = game[`${player}`].token;
+    for (var i = 0; i < game[player].moves.length; i++) {
+        var yCoordinate = game[player].moves[i][1];
+        var xCoordinate = game[player].moves[i][0];
+        var currentBox = document.querySelector(`[data-x="${xCoordinate}"][data-y="${yCoordinate}"]`);
+        currentBox.innerText = game[player].token;
     }
 }
 

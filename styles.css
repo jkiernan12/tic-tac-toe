@@ -5,11 +5,11 @@ body {
     grid-template-columns: 1fr 2fr 1fr;
 }
 
-.player-1, .player-2, .game {
+.player-1, .player-2, .game, .board__square {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    border: 2px solid red;
 }
 
 .player-1__name, .player-2__name {
@@ -18,16 +18,17 @@ body {
 
 .board {
     border: 10px solid black;
-    width: 95%;
-    height: 100%;
+    width: 50%;
     margin: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
+    max-height: 100vh;
 }
 
 .board__square {
     border: 2px solid pink;
     width: 100%;
     font-size: 4rem;
+    aspect-ratio: 1;
 }
