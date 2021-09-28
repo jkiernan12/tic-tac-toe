@@ -3,6 +3,7 @@ var board = document.querySelector("#board");
 var playerOneWins = document.querySelector("#playerOneWins");
 var playerTwoWins = document.querySelector("#playerTwoWins");
 var gameFeedback = document.querySelector("#gameFeedBack");
+var trophy = document.querySelector("#trophy");
 
 // Event Listeners
 window.addEventListener("load", renderGame);
@@ -42,8 +43,8 @@ function renderWinner() {
         } else {
             renderFeedback(`${game[game.winner].token} won!`);
         }
-           
-        setTimeout(clearBoard, 1000)
+        toggleTrophy();   
+        setTimeout(clearBoard, 2000);
     }
 }
 
@@ -69,10 +70,15 @@ function renderFeedback(message) {
     }
 }
 
+function toggleTrophy() {
+    trophy.classList.toggle("trophy-animation");
+}
+
 function clearBoard() {
     var squares = document.querySelectorAll(".board__square");
     for (var i = 0; i < squares.length; i++) {
         squares[i].innerText = "";
     }
+    toggleTrophy();
     renderFeedback(`It's ${game[game.currentTurn].token}'s turn!`)
 }
