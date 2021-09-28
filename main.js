@@ -3,6 +3,7 @@ var board = document.querySelector("#board");
 var playerOneWins = document.querySelector("#playerOneWins");
 var playerTwoWins = document.querySelector("#playerTwoWins");
 var gameFeedback = document.querySelector("#gameFeedBack");
+var trophy = document.querySelector("#trophy");
 
 // Event Listeners
 window.addEventListener("load", renderGame);
@@ -40,10 +41,10 @@ function renderWinner() {
         if (game.winner === "draw") {
             renderFeedback(`It's a draw!`);
         } else {
+            animate(trophy, "trophy-animation")
             renderFeedback(`${game[game.winner].token} won!`);
         }
-           
-        setTimeout(clearBoard, 1000)
+        setTimeout(clearBoard, 2000);
     }
 }
 
@@ -65,9 +66,11 @@ function renderBoard(player) {
 
 function renderFeedback(message) {
     if (message) {
+        animate(gameFeedback, "feedback-animation")
         gameFeedback.innerText = message;
     }
 }
+
 
 function clearBoard() {
     var squares = document.querySelectorAll(".board__square");
@@ -75,4 +78,15 @@ function clearBoard() {
         squares[i].innerText = "";
     }
     renderFeedback(`It's ${game[game.currentTurn].token}'s turn!`)
+    trophy.classList.remove("trophy-animation")
+}
+
+function animate (element, className) {
+    window.requestAnimationFrame(function() {
+        window.requestAnimationFrame(function() {
+            element.classList.add(className)
+            
+        })
+    })
+    element.classList.remove(className)
 }

@@ -19,6 +19,19 @@ body {
     font-size: 10rem;
 }
 
+.game__trophy {
+    font-size: 15rem;
+    position: absolute;
+    display: none;
+}
+
+.board-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .board {
     width: 50%;
     min-width: 400px;
@@ -27,7 +40,6 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     max-height: 100vh;
-    
 }
 
 .board__square:nth-child(3n + 2) {
@@ -86,4 +98,34 @@ body {
        font-size: 3rem;
        margin: 0;
     }
+}
+
+/* Animations */
+.trophy-animation {
+    animation: win-trophy 2s ease-in-out 1;
+    display: block;
+}
+
+@keyframes win-trophy {
+    0% {opacity: 0; transform: translateY(-100px);}
+    25% {opacity: 1; transform: translateY(-0px);}
+    75% {opacity: 1; transform: translateY(-0px);}
+    95% {opacity: 0}
+    100% {opacity: 0;}
+}
+
+.feedback-animation {
+    animation: feedback-wiggle .3s ease-in-out 1;
+}
+
+@keyframes feedback-wiggle {
+    0% {transform: rotate(1deg);}
+    33% {transform: rotate(-2deg);}
+    66% {transform: rotate(1deg);}
+    100% {transform: rotate(-1deg);}
+}
+
+/* Utility */
+.hidden {
+    display: none;
 }
