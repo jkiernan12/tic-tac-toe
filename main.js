@@ -6,7 +6,7 @@ var gameFeedback = document.querySelector("#gameFeedBack");
 var trophy = document.querySelector("#trophy");
 
 // Event Listeners
-window.addEventListener("load", renderWins);
+window.addEventListener("load", startGame);
 board.addEventListener("click", makeMove);
 
 // Globals
@@ -25,6 +25,11 @@ function makeMove(event) {
         game.toggleTurn();
         renderGame();
     }
+}
+
+function startGame() {
+    renderMove();
+    renderGame();
 }
 
 function renderMove() {
