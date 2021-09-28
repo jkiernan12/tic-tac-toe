@@ -41,9 +41,9 @@ function renderWinner() {
         if (game.winner === "draw") {
             renderFeedback(`It's a draw!`);
         } else {
+            animate(trophy, "trophy-animation")
             renderFeedback(`${game[game.winner].token} won!`);
         }
-        toggleTrophy();   
         setTimeout(clearBoard, 2000);
     }
 }
@@ -66,19 +66,27 @@ function renderBoard(player) {
 
 function renderFeedback(message) {
     if (message) {
+        animate(gameFeedback, "feedback-animation")
         gameFeedback.innerText = message;
     }
 }
 
-function toggleTrophy() {
-    trophy.classList.toggle("trophy-animation");
-}
 
 function clearBoard() {
     var squares = document.querySelectorAll(".board__square");
     for (var i = 0; i < squares.length; i++) {
         squares[i].innerText = "";
     }
-    toggleTrophy();
     renderFeedback(`It's ${game[game.currentTurn].token}'s turn!`)
+    trophy.classList.remove("trophy-animation")
+}
+
+function animate (element, className) {
+    window.requestAnimationFrame(function() {
+        window.requestAnimationFrame(function() {
+            element.classList.add(className)
+            
+        })
+    })
+    element.classList.remove(className)
 }
