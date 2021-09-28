@@ -6,14 +6,13 @@ var gameFeedback = document.querySelector("#gameFeedBack");
 var trophy = document.querySelector("#trophy");
 
 // Event Listeners
-window.addEventListener("load", renderGame);
+window.addEventListener("load", renderWins);
 board.addEventListener("click", makeMove);
 
 // Globals
 var game = new Game();
 
 // Functions
-
 function makeMove(event) {
     var moveCoordinates = [];
     moveCoordinates.push(parseInt(event.target.dataset.x));
@@ -21,40 +20,45 @@ function makeMove(event) {
 
     if (game.checkMove(moveCoordinates)) {
         game.addMove(moveCoordinates);
-        renderGame();
+        renderMove();
         game.checkGame();
         game.toggleTurn();
+        renderGame();
     }
-    renderGame();
 }
 
-function renderGame() {
+function renderMove() {
     renderWins();
     renderBoard("player1");
     renderBoard("player2");
-    renderFeedback(`It's ${game[game.currentTurn].token}'s turn!`);
-    renderWinner();
 }
 
-function renderWinner() {
-    if (game.board.length === 0 && game.winner) {
-        if (game.winner === "draw") {
-            board.classList.add("disable-clicks");
-            renderFeedback(`It's a draw!`);
-        } else {
-            animate(trophy, "trophy-animation")
-            renderFeedback(`${game[game.winner].token} won!`);
-            board.classList.add("disable-clicks");
-        }
-        setTimeout(clearBoard, 2000);
+function renderGame() {
+    if (!game.winState) {
+        renderFeedback(`It's ${game[game.currentTurn].token}'s turn!`);
+    } else { 
+        renderWinner();
     }
 }
 
+function renderWinner() {
+    if (game.winner === "draw") {
+        renderFeedback(`It's a draw!`);
+    } else {
+        animate(trophy, "trophy-animation")
+        renderFeedback(`${game[game.winner].token} won!`);
+    }
+    renderWins();
+    board.classList.add("disable-clicks");
+    setTimeout(resetBoard, 2000);
+    
+}
+
 function renderWins() {
-        game.player1.retrieveWinsFromStorage();
-        game.player2.retrieveWinsFromStorage();
-        playerOneWins.innerText = `${game.player1.wins} wins`;
-        playerTwoWins.innerText = `${game.player2.wins} wins`;
+    game.player1.retrieveWinsFromStorage();
+    game.player2.retrieveWinsFromStorage();
+    playerOneWins.innerText = `${game.player1.wins} wins`;
+    playerTwoWins.innerText = `${game.player2.wins} wins`;
 }
 
 function renderBoard(player) {
@@ -67,27 +71,30 @@ function renderBoard(player) {
 }
 
 function renderFeedback(message) {
-        animate(gameFeedback, "feedback-animation")
-        gameFeedback.innerText = message;
+    animate(gameFeedback, "feedback-animation");
+    gameFeedback.innerText = message;
 }
 
+function resetBoard() {
+    clearBoard();
+    renderFeedback(`It's ${game[game.currentTurn].token}'s turn!`);
+    trophy.classList.remove("trophy-animation");
+    board.classList.remove("disable-clicks");
+}
 
 function clearBoard() {
     var squares = document.querySelectorAll(".board__square");
     for (var i = 0; i < squares.length; i++) {
         squares[i].innerText = "";
     }
-    renderFeedback(`It's ${game[game.currentTurn].token}'s turn!`)
-    trophy.classList.remove("trophy-animation")
-    board.classList.remove("disable-clicks");
 }
 
 function animate (element, className) {
     window.requestAnimationFrame(function() {
         window.requestAnimationFrame(function() {
-            element.classList.add(className)
+            element.classList.add(className);
             
         })
     })
-    element.classList.remove(className)
+    element.classList.remove(className);
 }
