@@ -4,7 +4,8 @@ class Game {
         this.player2 = new Player("two", "🎃");
         this.board = [];
         this.currentTurn = "player1";
-        this.winner = ""
+        this.winner = "";
+        this.winState = false;
     }
 
     checkMove(move) {
@@ -13,11 +14,13 @@ class Game {
                 return false;
             }
         } 
+
             return true;
     }
 
     addMove(move) {
         this.board.push(move);
+        this.winState = false;
         this[`${this.currentTurn}`].moves.push(move);
         }
 
@@ -33,7 +36,7 @@ class Game {
         this.checkDiagonal([[1, 1], [2, 2], [3, 3]]);
         this.checkDiagonal([[3, 1], [2, 2], [1, 3]]);
         this.checkStraights(0);
-        this.checkStraights(1)
+        this.checkStraights(1);
         this.checkDraw();
     }
 
@@ -66,6 +69,7 @@ class Game {
 
     winGame() {
         this.winner = this.currentTurn;
+        this.winState = true;
         this.clearMoves();
         this[this.currentTurn].addWin();
         this[this.currentTurn].saveWinsToStorage();
@@ -75,12 +79,13 @@ class Game {
         if (this.board.length === 9) {
             this.clearMoves();
             this.winner = "draw";
+            this.winState = true;
         }
     }
 
     clearMoves() {
         this.board = [];
-        this.player1.moves = []
+        this.player1.moves = [];
         this.player2.moves = [];
     }
 }

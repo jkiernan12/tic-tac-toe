@@ -20,6 +20,7 @@ This was our first opportunity to tackle a project from start to finish with no 
     - BEM Naming Convention
     - Media queries
     - Grid & Flexbox
+    - Animations
 - HTML5
   - Semantic tags
 - Chrome
@@ -27,6 +28,7 @@ This was our first opportunity to tackle a project from start to finish with no 
   - WAVE Evaluation Tool
 
 ## Instructions
+![Screen Recording 2021-09-28 at 3 20 40 PM](https://user-images.githubusercontent.com/73560269/135152785-8465acd8-c26e-4b46-90ad-a364ae44f2d9.gif)◊
 - The app can be accessed [here](https://jkiernan12.github.io/tic-tac-toe)!
 - Player 1 starts the game and chooses a square to place their token.
 - Player 2 and player 1 swap turns until one of them gets three in a row and the game resets.
@@ -36,11 +38,11 @@ This was our first opportunity to tackle a project from start to finish with no 
 - Class-to-class interactions for maintaining and updating the data model
 - A separate main.js file for rendering and updating the DOM
 - A responsive CSS layout that supports mobile users
+- CSS animations
 - Data persistence using local storage
 - Seasonal flair (can you guess what holiday is coming up?)
 
 ## Potential Improvements
-- CSS animations for wins, placing of tokens, etc
 - Play against the computer
 - Choose your own token
 
