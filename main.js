@@ -7,7 +7,7 @@ var trophy = document.querySelector("#trophy");
 
 // Event Listeners
 window.addEventListener("load", renderGame);
-board.addEventListener("click", makeMove)
+board.addEventListener("click", makeMove);
 
 // Globals
 var game = new Game();
@@ -33,16 +33,18 @@ function renderGame() {
     renderBoard("player1");
     renderBoard("player2");
     renderFeedback(`It's ${game[game.currentTurn].token}'s turn!`);
-    renderWinner()
+    renderWinner();
 }
 
 function renderWinner() {
     if (game.board.length === 0 && game.winner) {
         if (game.winner === "draw") {
+            board.classList.add("disable-clicks");
             renderFeedback(`It's a draw!`);
         } else {
             animate(trophy, "trophy-animation")
             renderFeedback(`${game[game.winner].token} won!`);
+            board.classList.add("disable-clicks");
         }
         setTimeout(clearBoard, 2000);
     }
@@ -65,10 +67,8 @@ function renderBoard(player) {
 }
 
 function renderFeedback(message) {
-    if (message) {
         animate(gameFeedback, "feedback-animation")
         gameFeedback.innerText = message;
-    }
 }
 
 
@@ -79,6 +79,7 @@ function clearBoard() {
     }
     renderFeedback(`It's ${game[game.currentTurn].token}'s turn!`)
     trophy.classList.remove("trophy-animation")
+    board.classList.remove("disable-clicks");
 }
 
 function animate (element, className) {

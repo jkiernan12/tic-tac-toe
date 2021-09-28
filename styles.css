@@ -129,3 +129,7 @@ body {
 .hidden {
     display: none;
 }
+
+.disable-clicks {
+    pointer-events: none;
+}
