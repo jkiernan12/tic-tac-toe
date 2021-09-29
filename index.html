@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Tic Tac Toe</title>
-        <meta name="description" content="A simple game to play with friends">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="styles.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Oswald&display=swap" rel="stylesheet">
-        <link rel="icon" type="image/png" href="./assets/skull-favicon.png">
-    </head>
-    <body>
-        <aside class="player-1">
-            <h2 class="player-1__name" id="playerOneName">👻</h2>
-            <h3 class="player-1__wins" id="playerOneWins">0 wins</h3>
-        </aside>
-        <main class="game">
-            <h1 class="game__title">Spooky Tic Tac Toe</h1>
-            <h2 class="game__feedback" id="gameFeedBack">It's Player 1's Turn</h2>
-            <div class="board-container">
-                <div class="board" id="board">
-                    <div class="board__square" data-x=1 data-y=3></div>
-                    <div class="board__square" data-x=2 data-y=3></div>
-                    <div class="board__square" data-x=3 data-y=3></div>
-                    <div class="board__square" data-x=1 data-y=2></div>
-                    <div class="board__square" data-x=2 data-y=2></div>
-                    <div class="board__square" data-x=3 data-y=2></div>
-                    <div class="board__square" data-x=1 data-y=1></div>
-                    <div class="board__square" data-x=2 data-y=1></div>
-                    <div class="board__square" data-x=3 data-y=1></div>
-                </div>
-                <div class="game__trophy" id="trophy">🏆</div>
-            </div>
-        </main>
-        <aside class="player-2">
-            <h2 class="player-2__name" id="playerTwoName">🎃</h2>
-            <h3 class="player-2__wins" id="playerTwoWins">0 wins</h3>
-        </aside>
-        <script src="Player.js"></script>
-        <script src="Game.js"></script>
-        <script src="main.js"></script>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tic Tac Toe</title>
+    <meta name="description" content="A simple game to play with friends">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Oswald&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./assets/skull-favicon.png">
+  </head>
+  <body>
+    <aside class="player-1">
+      <h2 class="player-1__name" id="playerOneName">👻</h2>
+      <h3 class="player-1__wins" id="playerOneWins">0 wins</h3>
+    </aside>
+    <main class="game">
+      <h1 class="game__title">Spooky Tic Tac Toe</h1>
+      <h2 class="game__feedback" id="gameFeedBack">It's Player 1's Turn</h2>
+      <div class="board-container">
+        <div class="board" id="board">
+          <div class="board__square" data-x=1 data-y=3></div>
+          <div class="board__square" data-x=2 data-y=3></div>
+          <div class="board__square" data-x=3 data-y=3></div>
+          <div class="board__square" data-x=1 data-y=2></div>
+          <div class="board__square" data-x=2 data-y=2></div>
+          <div class="board__square" data-x=3 data-y=2></div>
+          <div class="board__square" data-x=1 data-y=1></div>
+          <div class="board__square" data-x=2 data-y=1></div>
+          <div class="board__square" data-x=3 data-y=1></div>
+        </div>
+        <div class="game__trophy" id="trophy">🏆</div>
+      </div>
+    </main>
+    <aside class="player-2">
+      <h2 class="player-2__name" id="playerTwoName">🎃</h2>
+      <h3 class="player-2__wins" id="playerTwoWins">0 wins</h3>
+    </aside>
+    <script src="Player.js"></script>
+    <script src="Game.js"></script>
+    <script src="main.js"></script>
+  </body>
 </html>
